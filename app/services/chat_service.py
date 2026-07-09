@@ -1,24 +1,72 @@
-from app.services.openai_service import OpenAIService
+from sqlalchemy.orm import Session
+
 from app.ai.factory import AIProviderFactory
 from app.ai.prompt_manager import PromptManager
+
+from app.repositories.chat_repository import ChatRepository
 
 
 class ChatService:
 
     @staticmethod
-    def chat(user_message: str):
+    def chat(
+        db: Session,
+        user,
+        message: str
+    ):
 
-        provider = AIProviderFactory.get_provider()
+        history = ChatRepository.get_recent_messages(
+            db,
+            user.id
+        )
 
         messages = [
+
             {
                 "role": "system",
                 "content": PromptManager.system_prompt()
-            },
-            {
-                "role": "user",
-                "content": user_message
             }
+
         ]
 
-        return provider.chat(messages)
+        history.reverse()
+
+        for item in history:
+
+            messages.append(
+
+                {
+                    "role": item.role,
+                    "content": item.content
+                }
+
+            )
+
+        messages.append(
+
+            {
+                "role": "user",
+                "content": message
+            }
+
+        )
+
+        provider = AIProviderFactory.get_provider()
+
+        ai_response = provider.chat(messages)
+
+        ChatRepository.save_message(
+            db,
+            user.id,
+            "user",
+            message
+        )
+
+        ChatRepository.save_message(
+            db,
+            user.id,
+            "assistant",
+            ai_response
+        )
+
+        return ai_response

@@ -10,4 +10,6 @@ uploads/
 
 chroma_db/
 
+app/core/config.py
+
 *.db
