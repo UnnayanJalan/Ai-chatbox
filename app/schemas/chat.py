@@ -1,9 +1,16 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 
 class ChatRequest(BaseModel):
-    message: str
+    message: str = Field(
+        ...,
+        min_length=1,
+        max_length=10000,
+        description="User message sent to the AI"
+    )
 
 
 class ChatResponse(BaseModel):
     response: str
+    provider: str
+    model: str

@@ -54,19 +54,22 @@ class ChatService:
         provider = AIProviderFactory.get_provider()
 
         ai_response = provider.chat(messages)
-
         ChatRepository.save_message(
-            db,
-            user.id,
-            "user",
-            message
+        db,
+        user.id,
+        "user",
+        message
         )
 
         ChatRepository.save_message(
-            db,
-            user.id,
-            "assistant",
-            ai_response
+        db,
+        user.id,
+        "assistant",
+        ai_response
         )
 
-        return ai_response
+        return {
+        "response": ai_response,
+        "provider": provider.__class__.__name__,
+        "model": getattr(provider, "model", "unknown")
+        }

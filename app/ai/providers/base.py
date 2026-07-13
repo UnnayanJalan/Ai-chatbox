@@ -1,5 +1,4 @@
-from abc import ABC
-from abc import abstractmethod
+from abc import ABC, abstractmethod
 
 
 class AIProvider(ABC):
@@ -8,5 +7,13 @@ class AIProvider(ABC):
     def chat(
         self,
         messages: list[dict]
+    ) -> str:
+        pass
+
+    @abstractmethod
+    def generate(
+        self,
+        system_prompt: str,
+        user_prompt: str
     ) -> str:
         pass

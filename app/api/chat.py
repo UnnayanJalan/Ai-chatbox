@@ -32,12 +32,10 @@ def chat(
     current_user: User = Depends(get_current_user)
 ):
 
-    response = ChatService.chat(
+    result = ChatService.chat(
         db=db,
         user=current_user,
         message=request.message
     )
 
-    return {
-        "response": response
-    }
+    return result
