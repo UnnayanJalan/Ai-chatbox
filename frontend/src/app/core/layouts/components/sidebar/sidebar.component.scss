@@ -1,0 +1,76 @@
+.sidebar {
+  width: 260px;
+  height: 100vh;
+  padding: 1.2rem 1rem;
+  background: rgba(4, 15, 12, 0.86);
+  border-right: 1px solid rgba(46, 204, 113, 0.16);
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  position: sticky;
+  top: 0;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.7rem 0.5rem;
+}
+
+.brand-mark {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #14b8a6, #2dd4bf);
+  color: #04110d;
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+}
+
+.eyebrow {
+  margin: 0;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: #66e0c1;
+}
+
+h2 {
+  margin: 0.2rem 0 0;
+  font-size: 1rem;
+  color: #f7fffb;
+}
+
+.nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.nav-item {
+  border: 0;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.8rem 0.85rem;
+  border-radius: 14px;
+  color: #b7d8ca;
+  text-align: left;
+  transition: all 0.2s ease-in-out;
+}
+
+.nav-item:hover,
+.nav-item.active {
+  background: rgba(45, 212, 191, 0.14);
+  color: #f2fff8;
+  transform: translateX(2px);
+  box-shadow: inset 0 0 0 1px rgba(45, 212, 191, 0.25);
+}
+
+.nav-icon {
+  width: 24px;
+  font-size: 0.95rem;
+}

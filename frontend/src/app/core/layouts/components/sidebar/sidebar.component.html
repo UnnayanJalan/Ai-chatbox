@@ -1,0 +1,16 @@
+<aside class="sidebar">
+  <div class="brand">
+    <div class="brand-mark">AI</div>
+    <div>
+      <p class="eyebrow">Enterprise</p>
+      <h2>Chat Admin</h2>
+    </div>
+  </div>
+
+  <nav class="nav-list">
+    <a *ngFor="let item of items" type="button" class="nav-item" [routerLink]="item.route" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: false }">
+      <span class="nav-icon">{{ item.icon }}</span>
+      <span>{{ item.label }}</span>
+    </a>
+  </nav>
+</aside>
