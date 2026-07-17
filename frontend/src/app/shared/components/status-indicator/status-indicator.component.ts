@@ -11,7 +11,7 @@ import { Component, input } from '@angular/core';
   `,
   styles: [
     `:host { display: inline-block; }`,
-    `.status-pill { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.35rem 0.6rem; border-radius: 999px; font-size: 0.8rem; font-weight: 700; color: #ecfdf5; background: rgba(255,255,255,0.07); }`,
+    `.status-pill { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.35rem 0.6rem; border-radius: 999px; font-size: 0.8rem; font-weight: 700; color: var(--text-strong, #ecfdf5); background: var(--pill-bg, rgba(255,255,255,0.07)); }`,
     `.dot { width: 8px; height: 8px; border-radius: 50%; background: #f59e0b; }`,
     `.healthy .dot { background: #22c55e; }`,
     `.warning .dot { background: #f59e0b; }`

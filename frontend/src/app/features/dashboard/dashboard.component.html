@@ -1,15 +1,8 @@
 <section class="dashboard-shell">
-  <div class="hero-card">
-    <div>
-      <p class="eyebrow">Operations overview</p>
-      <h2>AI Chat Admin</h2>
-      <p class="hero-copy">Monitor ingestion health, chat performance, and retrieval quality from one command center.</p>
-    </div>
-    <div class="hero-actions">
-      <button type="button" class="secondary-btn">Export</button>
-      <button type="button" class="primary-btn">Refresh</button>
-    </div>
-  </div>
+  <app-page-header eyebrow="Operations overview" title="AI Administration Platform" subtitle="Monitor ingestion health, chat performance, and retrieval quality from one command center.">
+    <app-action-button label="Export" variant="ghost"></app-action-button>
+    <app-action-button label="Refresh" variant="primary"></app-action-button>
+  </app-page-header>
 
   <div class="metric-grid">
     <app-metric-card *ngFor="let metric of metrics$ | async" [metric]="metric"></app-metric-card>

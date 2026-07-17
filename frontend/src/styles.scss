@@ -5,6 +5,13 @@
   font-family: 'Inter', sans-serif;
   background: #07110f;
   color: #e7f4ef;
+  --accent: #2dd4bf;
+  --accent-strong: #14b8a6;
+  --text-strong: #f2fff8;
+  --text-muted: #8fada0;
+  --panel-bg: rgba(7, 22, 19, 0.9);
+  --panel-border: rgba(46, 204, 113, 0.16);
+  --pill-bg: rgba(255, 255, 255, 0.07);
 }
 
 * {
