@@ -3,12 +3,14 @@ import { CommonModule } from '@angular/common';
 import { MetricCardComponent } from '../../shared/components/metric-card/metric-card.component';
 import { ListCardComponent } from '../../shared/components/list-card/list-card.component';
 import { StatusIndicatorComponent } from '../../shared/components/status-indicator/status-indicator.component';
+import { PageHeaderComponent } from '../../shared/components/page-header/page-header.component';
+import { ActionButtonComponent } from '../../shared/components/action-button/action-button.component';
 import { DashboardDataService } from '../../data/services/dashboard-data.service';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule, MetricCardComponent, ListCardComponent, StatusIndicatorComponent],
+  imports: [CommonModule, MetricCardComponent, ListCardComponent, StatusIndicatorComponent, PageHeaderComponent, ActionButtonComponent],
   templateUrl: './dashboard.component.html',
   styles: []
 })

@@ -3,36 +3,15 @@
   justify-content: space-between;
   align-items: center;
   gap: 1rem;
-  background: rgba(4, 15, 12, 0.65);
-  border: 1px solid rgba(46, 204, 113, 0.16);
-  border-radius: 18px;
+  background: var(--panel-bg, rgba(4, 15, 12, 0.65));
+  border: 1px solid var(--panel-border, rgba(46, 204, 113, 0.16));
+  border-radius: 20px;
   padding: 0.85rem 1rem;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
 }
 
-.search-box {
+app-search-box {
   flex: 1;
-  display: flex;
-  align-items: center;
-  gap: 0.65rem;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(46,204,113,0.14);
-  border-radius: 999px;
-  padding: 0.7rem 0.9rem;
-  color: #8aa597;
-}
-
-.search-box input {
-  border: 0;
-  background: transparent;
-  outline: none;
-  width: 100%;
-  color: #f2fff8;
-}
-
-.shortcut {
-  font-size: 0.75rem;
-  color: #66e0c1;
 }
 
 .nav-actions {
@@ -45,7 +24,7 @@
   position: relative;
   border: 0;
   background: rgba(255,255,255,0.05);
-  color: #f2fff8;
+  color: var(--text-strong, #f2fff8);
   width: 42px;
   height: 42px;
   border-radius: 999px;
@@ -90,10 +69,10 @@
 .profile p {
   margin: 0;
   font-size: 0.9rem;
-  color: #f2fff8;
+  color: var(--text-strong, #f2fff8);
 }
 
 .profile span {
-  color: #8aa597;
+  color: var(--text-muted, #8aa597);
   font-size: 0.78rem;
 }

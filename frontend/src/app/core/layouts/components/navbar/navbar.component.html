@@ -1,12 +1,8 @@
 <header class="navbar">
-  <label class="search-box" for="global-search">
-    <span class="search-icon">⌕</span>
-    <input id="global-search" type="text" placeholder="Search dashboards, models, docs" />
-    <span class="shortcut">Ctrl + K</span>
-  </label>
+  <app-search-box placeholder="Search dashboards, models, docs" value=""></app-search-box>
   <div class="nav-actions">
     <button class="icon-btn" type="button">🔔 <span class="badge">3</span></button>
-    <button class="icon-btn" type="button" (click)="toggleTheme()">☀︎</button>
+    <button class="icon-btn" type="button" (click)="toggleTheme()" [attr.aria-label]="themeLabel">{{ themeLabel }}</button>
     <div class="profile">
       <div class="avatar">SC</div>
       <div>
