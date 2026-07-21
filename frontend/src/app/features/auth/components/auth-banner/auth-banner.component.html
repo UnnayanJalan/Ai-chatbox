@@ -1,0 +1,88 @@
+<div class="banner">
+
+    <div class="background-glow glow-one"></div>
+    <div class="background-glow glow-two"></div>
+
+    <div class="content">
+
+        <div class="logo">
+
+            <span class="logo-icon">🤖</span>
+
+            <div>
+
+                <h2>{{title}}</h2>
+
+                <small>ADMIN PLATFORM</small>
+
+            </div>
+
+        </div>
+
+        <div class="hero">
+
+            <h1>{{subtitle}}</h1>
+
+            <p>
+
+                {{description}}
+
+            </p>
+
+        </div>
+
+        <div class="feature-list">
+
+            @for(feature of features;track feature.title){
+
+            <div class="feature">
+
+                <div class="feature-icon">
+
+                    {{feature.icon}}
+
+                </div>
+
+                <div>
+
+                    <h4>{{feature.title}}</h4>
+
+                    <p>
+
+                        {{feature.description}}
+
+                    </p>
+
+                </div>
+
+            </div>
+
+            }
+
+        </div>
+
+        <!-- <div class="illustration">
+
+            <div class="brain">
+
+                🧠
+
+            </div>
+
+        </div> -->
+
+    </div>
+
+    <footer>
+
+        <span>{{version}}</span>
+
+        <span>
+
+            © 2026 AI Chat Platform
+
+        </span>
+
+    </footer>
+
+</div>
