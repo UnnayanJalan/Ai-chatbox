@@ -12,11 +12,6 @@ class LoginRequest(BaseModel):
     password: str
 
 
-class TokenResponse(BaseModel):
-    access_token: str
-    token_type: str = "bearer"
-
-
 class UserResponse(BaseModel):
     id: int
     name: str
@@ -24,3 +19,15 @@ class UserResponse(BaseModel):
 
     class Config:
         from_attributes = True
+
+
+class RegisterResponse(BaseModel):
+    message: str
+    user: UserResponse
+
+
+class TokenResponse(BaseModel):
+    access_token: str
+    token_type: str
+    expires_in: int
+    user: UserResponse

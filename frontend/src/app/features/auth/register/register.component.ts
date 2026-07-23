@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import {FormBuilder,FormGroup,ReactiveFormsModule,Validators,AbstractControl,ValidationErrors,} from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators, AbstractControl, ValidationErrors, } from '@angular/forms';
 
 import { Router, RouterModule } from '@angular/router';
 
@@ -67,15 +67,26 @@ export class RegisterComponent {
     }
 
     this.loading = true;
-
-    this.authService.register(this.registerForm.value).subscribe({
+    this.authService.register(
+      this.registerForm.value
+    ).subscribe({
       next: () => {
         this.loading = false;
-        this.router.navigate(['/auth/login']);
+        alert(
+          'Registration Successful'
+        );
+        this.router.navigate([
+          '/auth/login'
+        ]);
       },
-      error: () => {
+
+      error: (error) => {
         this.loading = false;
-      },
+        alert(
+          error.error?.detail ??
+          'Registration Failed'
+        );
+      }
     });
   }
 }

@@ -1,5 +1,6 @@
 import { AuthUser } from './auth-user.model';
 
+
 export interface LoginRequest {
   email: string;
   password: string;
@@ -7,8 +8,8 @@ export interface LoginRequest {
 }
 
 export interface LoginResponse {
-  accessToken: string;
-  refreshToken: string;
-  expiresIn: number;
+  access_token: string;
+  token_type: string;
+  expires_in: number;
   user: AuthUser;
 }

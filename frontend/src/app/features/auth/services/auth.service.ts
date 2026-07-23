@@ -1,115 +1,111 @@
-import { Injectable, inject } from '@angular/core';
-import { BehaviorSubject, Observable, of, delay, tap } from 'rxjs';
-
-import { LoginRequest, LoginResponse } from '../models/login.model';
-import {
-  RegisterRequest,
-  RegisterResponse,
-} from '../models/register.model';
+import { Injectable } from '@angular/core';
+import {HttpClient,HttpParams,} from '@angular/common/http';
+import {BehaviorSubject,Observable,tap,} from 'rxjs';
+import { environment } from '../../../../environments/environment';
+import {LoginRequest,LoginResponse,} from '../models/login.model';
+import {RegisterRequest,RegisterResponse,} from '../models/register.model';
 import { AuthUser } from '../models/auth-user.model';
+import { StorageService } from './storage.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private readonly STORAGE_KEY = 'ai-chat-auth';
 
-  private readonly currentUserSubject =
-    new BehaviorSubject<AuthUser | null>(this.loadUser());
+  private readonly apiUrl =
+    `${environment.apiUrl}/auth`;
 
-  currentUser$ = this.currentUserSubject.asObservable();
-
-  private readonly isAuthenticatedSubject =
-    new BehaviorSubject<boolean>(!!this.loadUser());
-
-  isAuthenticated$ = this.isAuthenticatedSubject.asObservable();
-
-  constructor() {}
-
-  login(payload: LoginRequest): Observable<LoginResponse> {
-    const mockUser: AuthUser = {
-      id: crypto.randomUUID(),
-      fullName: 'Admin User',
-      email: payload.email,
-      role: 'Admin',
-      avatar: '',
-      isActive: true,
-      lastLogin: new Date(),
-      createdAt: new Date(),
-    };
-
-    const response: LoginResponse = {
-      accessToken: 'mock-access-token',
-      refreshToken: 'mock-refresh-token',
-      expiresIn: 3600,
-      user: mockUser,
-    };
-
-    return of(response).pipe(
-      delay(1200),
-      tap((res) => {
-        this.currentUserSubject.next(res.user);
-        this.isAuthenticatedSubject.next(true);
-
-    //     return this.http.post<LoginResponse>(
-    //     '/api/auth/login',
-    //     payload
-    // );
-
-        if (payload.rememberMe) {
-          localStorage.setItem(
-            this.STORAGE_KEY,
-            JSON.stringify(res.user)
-          );
-        }
-      })
+  private currentUserSubject =
+    new BehaviorSubject<AuthUser | null>(
+      this.storage.getUser()
     );
+
+  currentUser$ =this.currentUserSubject.asObservable();
+
+  private authenticatedSubject =
+    new BehaviorSubject<boolean>(
+      !!this.storage.getToken()
+    );
+
+  isAuthenticated$ =this.authenticatedSubject.asObservable();
+
+  constructor(
+    private http: HttpClient,
+    private storage: StorageService,
+    private router: Router
+  ) {}
+
+  login(
+    payload: LoginRequest
+  ): Observable<LoginResponse> {
+
+    const body = new HttpParams()
+      .set('username', payload.email)
+      .set('password', payload.password);
+
+    return this.http
+      .post<LoginResponse>(
+        `${this.apiUrl}/login`,
+        body.toString(),
+        {
+          headers: {
+            'Content-Type':
+              'application/x-www-form-urlencoded',
+          },
+        }
+      )
+      
+      .pipe(
+        tap((response) => {
+          this.storage.saveToken(
+            response.access_token
+          );
+          this.storage.saveUser(
+            response.user
+          );
+          this.currentUserSubject.next(
+            response.user
+          );
+          this.authenticatedSubject.next(
+            true
+          );
+        })
+      );
   }
 
   register(
     payload: RegisterRequest
   ): Observable<RegisterResponse> {
-    const user: AuthUser = {
-      id: crypto.randomUUID(),
-      fullName: payload.fullName,
-      email: payload.email,
-      role: 'Admin',
-      avatar: '',
-      isActive: true,
-      createdAt: new Date(),
-    };
 
-    const response: RegisterResponse = {
-      success: true,
-      message: 'Registration successful.',
-      user,
-    };
+    return this.http.post<RegisterResponse>(
+      `${this.apiUrl}/register`,
+      {
+        name: payload.fullName,
+        email: payload.email,
+        password: payload.password,
+      }
+    );
+  }
 
-    return of(response).pipe(delay(1500));
+  me(): Observable<AuthUser> {
+    return this.http.get<AuthUser>(
+      `${this.apiUrl}/me`
+    );
   }
 
   logout(): void {
-    localStorage.removeItem(this.STORAGE_KEY);
-
+    this.storage.clear();
     this.currentUserSubject.next(null);
-    this.isAuthenticatedSubject.next(false);
+    this.authenticatedSubject.next(false);
+    this.router.navigate(['/auth/login']);
+  }
+
+  isLoggedIn(): boolean {
+    return !!this.storage.getToken();
   }
 
   getCurrentUser(): AuthUser | null {
     return this.currentUserSubject.value;
-  }
-
-  isLoggedIn(): boolean {
-    return this.isAuthenticatedSubject.value;
-  }
-
-  private loadUser(): AuthUser | null {
-    const user = localStorage.getItem(this.STORAGE_KEY);
-
-    if (!user) {
-      return null;
-    }
-
-    return JSON.parse(user);
   }
 }
