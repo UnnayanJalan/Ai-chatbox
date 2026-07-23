@@ -1,0 +1,11 @@
+<div class="conversation-list">
+    <button class="new-chat">
+        + New Chat
+    </button>
+    <div
+        class="conversation"
+        *ngFor="let item of conversations">
+        <h4>{{item.title}}</h4>
+        <span>{{item.updatedAt}}</span>
+    </div>
+</div>

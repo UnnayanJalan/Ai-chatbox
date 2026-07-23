@@ -1,0 +1,21 @@
+<div class="chat-window">
+
+    <div *ngFor="let message of messages$|async" class="message" [class.user]="message.role==='user'">
+
+        <div class="bubble">
+
+            <ng-container *ngIf="!message.loading">
+                {{message.content}}
+            </ng-container>
+
+            <ng-container *ngIf="message.loading">
+                <div class="thinking">
+                    AI is thinking...
+                </div>
+            </ng-container>
+
+        </div>
+
+    </div>
+
+</div>
