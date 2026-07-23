@@ -1,14 +1,24 @@
 <header class="navbar">
   <app-search-box placeholder="Search dashboards, models, docs" value=""></app-search-box>
   <div class="nav-actions">
-    <button class="icon-btn" type="button">🔔 <span class="badge">3</span></button>
-    <button class="icon-btn" type="button" (click)="toggleTheme()" [attr.aria-label]="themeLabel">{{ themeLabel }}</button>
-    <div class="profile">
-      <div class="avatar">SC</div>
-      <div>
-        <p>Sarah Chen</p>
-        <span>Admin</span>
+    <button class="icon-btn" type="button"> 🔔 <span class="badge">3</span></button>
+    <button class="icon-btn" type="button" (click)="toggleTheme()" [attr.aria-label]="themeLabel">{{ themeLabel
+      }}</button>
+    <div class="profile" *ngIf="user$ | async as user">
+
+      <div class="avatar">
+        {{ getInitials(user.name) }}
       </div>
+
+      <div>
+        <p>{{ user.name }}</p>
+        <span>{{ user.email }}</span>
+      </div>
+
     </div>
+    <button class="logout-btn" (click)="logout()">
+      <i class="fa-solid fa-right-from-bracket"></i>
+      Logout
+    </button>
   </div>
 </header>

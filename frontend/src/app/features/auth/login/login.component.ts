@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import {FormBuilder,FormGroup,ReactiveFormsModule,Validators,} from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators, } from '@angular/forms';
 
 import { Router, RouterModule } from '@angular/router';
 
@@ -62,17 +62,25 @@ export class LoginComponent {
     }
 
     this.loading = true;
-
-    this.authService.login(this.loginForm.value).subscribe({
+    this.authService.login(
+      this.loginForm.value
+    ).subscribe({
       next: () => {
         this.loading = false;
+        this.router.navigate([
+          '/dashboard'
+        ]);
 
-        // Update with your dashboard route
-        this.router.navigate(['/dashboard']);
       },
-      error: () => {
+
+      error: (error) => {
         this.loading = false;
-      },
+        console.error(error);
+        alert(
+          error.error?.detail ??
+          'Login failed'
+        );
+      }
     });
   }
 }

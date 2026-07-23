@@ -9,6 +9,7 @@ import { WidgetConfigComponent } from './features/widget-config/widget-config.co
 import { SettingsComponent } from './features/settings/settings.component';
 import { ApiKeysComponent } from './features/api-keys/api-keys.component';
 import { AiModeComponent } from './features/ai-mode/ai-mode.component';
+import { authGuard } from './features/auth/guards/auth.guard';
 
 export const routes: Routes = [
   {
@@ -18,6 +19,7 @@ export const routes: Routes = [
   {
     path: '',
     component: MainLayoutComponent,
+    canActivate: [authGuard],
     children: [
       { path: 'dashboard', component: DashboardComponent },
       { path: 'widget-config', component: WidgetConfigComponent },
