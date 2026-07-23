@@ -9,12 +9,14 @@ import { WidgetConfigComponent } from './features/widget-config/widget-config.co
 import { SettingsComponent } from './features/settings/settings.component';
 import { ApiKeysComponent } from './features/api-keys/api-keys.component';
 import { AiModeComponent } from './features/ai-mode/ai-mode.component';
+
 import { authGuard } from './features/auth/guards/auth.guard';
 
 export const routes: Routes = [
   {
     path: 'auth',
-    loadChildren: () => import('./features/auth/auth.routes').then(m => m.AUTH_ROUTES)
+    loadChildren: () =>
+      import('./features/auth/auth.routes').then(m => m.AUTH_ROUTES)
   },
   {
     path: '',
@@ -22,6 +24,13 @@ export const routes: Routes = [
     canActivate: [authGuard],
     children: [
       { path: 'dashboard', component: DashboardComponent },
+
+      {
+        path: 'chat',
+        loadChildren: () =>
+          import('./features/chat/chat.routes').then(m => m.CHAT_ROUTES)
+      },
+
       { path: 'widget-config', component: WidgetConfigComponent },
       { path: 'knowledge-base', component: KnowledgeBaseComponent },
       { path: 'ai-models', component: AiModeComponent },
@@ -30,6 +39,13 @@ export const routes: Routes = [
       { path: 'settings', component: SettingsComponent }
     ]
   },
-  { path: '', redirectTo: 'auth/login', pathMatch: 'full' },
-  { path: '**', redirectTo: 'auth/login' }
+  {
+    path: '',
+    redirectTo: 'auth/login',
+    pathMatch: 'full'
+  },
+  {
+    path: '**',
+    redirectTo: 'auth/login'
+  }
 ];

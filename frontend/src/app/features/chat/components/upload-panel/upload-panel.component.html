@@ -1,0 +1,14 @@
+<div class="upload-panel">
+  <label class="upload-btn">
+    Upload Document
+    <input type="file" hidden (change)="onFileSelected($event)" accept=".pdf,.doc,.docx,.txt">
+  </label>
+
+  <div *ngIf="uploading">
+    Uploading... {{progress}}%
+  </div>
+
+  <div *ngIf="uploadedFile && !uploading">
+    ✔ {{uploadedFile}}
+  </div>
+</div>

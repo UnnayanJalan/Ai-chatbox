@@ -19,6 +19,7 @@ interface SidebarItem {
 export class SidebarComponent {
   readonly items: SidebarItem[] = [
     { label: 'Dashboard', icon: '◉', route: '/dashboard', active: true },
+    { label: 'AI Chat', icon: '🤖', route: '/chat', active: true },
     { label: 'Widget Config', icon: '▣', route: '/widget-config' },
     { label: 'Knowledge Base', icon: '◌', route: '/knowledge-base' },
     { label: 'AI Models', icon: '⚡', route: '/ai-models' },

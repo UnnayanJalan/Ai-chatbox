@@ -1,0 +1,31 @@
+.chat-input{
+    display:flex;
+    gap:16px;
+    background:#071b17;
+    border-radius:18px;
+    padding:20px;
+}
+
+textarea{
+    flex:1;
+    resize:none;
+    height:70px;
+    background:#0f2b25;
+    border:none;
+    border-radius:12px;
+    padding:16px;
+    color:white;
+}
+
+textarea:focus{
+    outline:none;
+}
+
+button{
+    width:120px;
+    border:none;
+    border-radius:12px;
+    background:#27d3c3;
+    font-weight:700;
+    cursor:pointer;
+}

@@ -1,0 +1,20 @@
+.upload-panel{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:16px;
+  border:1px solid #2d3748;
+  border-radius:10px;
+}
+
+.upload-btn{
+  padding:10px 16px;
+  background:#2563eb;
+  color:#fff;
+  border-radius:8px;
+  cursor:pointer;
+}
+
+.upload-btn:hover{
+  background:#1d4ed8;
+}

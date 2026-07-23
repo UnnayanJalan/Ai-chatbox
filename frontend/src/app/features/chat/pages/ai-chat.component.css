@@ -1,0 +1,18 @@
+.chat-page{
+    display:grid;
+    grid-template-columns:320px 1fr;
+    gap:24px;
+    height:calc(100vh - 120px);
+}
+
+.left-panel{
+    background:#071b17;
+    border-radius:18px;
+    overflow:hidden;
+}
+
+.chat-panel{
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+}
