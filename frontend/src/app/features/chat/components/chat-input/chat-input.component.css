@@ -1,31 +1,51 @@
-.chat-input{
-    display:flex;
-    gap:16px;
-    background:#071b17;
-    border-radius:18px;
-    padding:20px;
+.chat-input {
+    display: flex;
+    gap: 16px;
+    background: #071b17;
+    border-radius: 18px;
+    padding: 20px;
 }
 
-textarea{
-    flex:1;
-    resize:none;
-    height:70px;
-    background:#0f2b25;
-    border:none;
-    border-radius:12px;
-    padding:16px;
-    color:white;
+textarea {
+    flex: 1;
+    resize: none;
+    height: 70px;
+    background: #0f2b25;
+    border: none;
+    border-radius: 12px;
+    padding: 16px;
+    color: white;
 }
 
-textarea:focus{
-    outline:none;
+textarea:focus {
+    outline: none;
 }
 
-button{
-    width:120px;
-    border:none;
-    border-radius:12px;
-    background:#27d3c3;
-    font-weight:700;
-    cursor:pointer;
+button {
+    width: 120px;
+    border: none;
+    border-radius: 12px;
+    background: #27d3c3;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.chat-mode {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.chat-mode button {
+    padding: 8px 14px;
+    border: 1px solid #374151;
+    background: #1f2937;
+    color: #fff;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.chat-mode button.active {
+    background: #2563eb;
+    border-color: #2563eb;
 }

@@ -1,10 +1,16 @@
+<div class="chat-mode">
+    <button [class.active]="mode==='chat'" (click)="setMode('chat')">
+        AI Chat
+    </button>
+
+    <button [class.active]="mode==='rag'" (click)="setMode('rag')">
+        Documents
+    </button>
+</div>
 <div class="chat-input">
-    <textarea
-        [(ngModel)]="message"
-        placeholder="Ask your AI anything...">
+    <textarea [(ngModel)]="message" placeholder="Ask your AI anything...">
     </textarea>
-    <button
-        (click)="send()">
+    <button (click)="send()">
         Send
     </button>
 </div>
